@@ -7,6 +7,17 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+// Using sass
+import sveltePreprocess from 'svelte-preprocess';
+const preprocess = sveltePreprocess({
+	scss: {
+  	includePaths: ['src'],
+	},
+	postcss: {
+  	plugins: [require('autoprefixer')],
+	},
+});
+
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
@@ -25,7 +36,8 @@ export default {
 			svelte({
 				dev,
 				hydratable: true,
-				emitCss: true
+				emitCss: true,
+				preprocess
 			}),
 			resolve({
 				browser: true,
@@ -69,7 +81,8 @@ export default {
 			}),
 			svelte({
 				generate: 'ssr',
-				dev
+				dev,
+				preprocess
 			}),
 			resolve({
 				dedupe: ['svelte']
