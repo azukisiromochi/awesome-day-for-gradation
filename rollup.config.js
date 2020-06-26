@@ -11,10 +11,10 @@ import pkg from './package.json';
 import sveltePreprocess from 'svelte-preprocess';
 const preprocess = sveltePreprocess({
 	scss: {
-  	includePaths: ['src'],
+		includePaths: ['src'],
 	},
 	postcss: {
-  	plugins: [require('autoprefixer')],
+		plugins: [require('autoprefixer')],
 	},
 });
 
