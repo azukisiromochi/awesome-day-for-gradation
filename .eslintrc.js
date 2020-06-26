@@ -24,9 +24,9 @@ module.exports = {
     }
   ],
   rules: {
-    // semi: ['error', 'never'] // uncomment if you want to remove ;
+    'no-var': 'error'
   },
   settings: {
-    // ...
+    // Nothing
   }
 }
