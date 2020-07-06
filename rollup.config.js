@@ -7,6 +7,10 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+// Using Smelte
+import includePaths from "rollup-plugin-includepaths";
+const smelte = require("smelte/rollup-plugin-smelte");
+
 // Using sass
 import sveltePreprocess from 'svelte-preprocess';
 const preprocess = sveltePreprocess({
@@ -39,10 +43,12 @@ export default {
 				emitCss: true,
 				preprocess
 			}),
+			!dev && smelte,
 			resolve({
 				browser: true,
 				dedupe: ['svelte']
 			}),
+			includePaths({ paths: ["./src", "./", "./node_modules/smelte/src/"] }),
 			commonjs(),
 
 			legacy && babel({
@@ -84,9 +90,11 @@ export default {
 				dev,
 				preprocess
 			}),
+			smelte(),
 			resolve({
 				dedupe: ['svelte']
 			}),
+			includePaths({ paths: ["./src", "./", "./node_modules/smelte/src/"] }),
 			commonjs()
 		],
 		external: Object.keys(pkg.dependencies).concat(
