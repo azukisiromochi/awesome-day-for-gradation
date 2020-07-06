@@ -7,9 +7,6 @@
   import Tabs from "smelte/src/components/Tabs";
   import Button from "smelte/src/components/Button";
   import { Spacer } from "smelte/src/components/Util";
-  import List from "smelte/src/components/List";
-  import ListItem from "smelte/src/components/List/ListItem.svelte";
-  import NavigationDrawer from "smelte/src/components/NavigationDrawer";
   import ProgressLinear from "smelte/src/components/ProgressLinear";
   import { writable } from "svelte/store";
 
@@ -65,28 +62,7 @@
 </AppBar>
 
 <main
-  class="container relative p-8 lg:max-w-3xl lg:ml-64 mx-auto mb-10 mt-24
-  md:ml-56 md:max-w-md md:px-3"
+  class="container relative p-8 mx-auto h-screen"
   transition:fade={{ duration: 300 }}>
-  <NavigationDrawer
-    bind:show={$showNav}
-    right={$right}
-    persistent={$persistent}
-    elevation={$elevation}>
-    <h6 class="p-6 ml-1 pb-2 text-xs text-gray-900">Menu</h6>
-    <List items={menu}>
-      <span slot="item" let:item class="cursor-pointer">
-        <a href={item.to}>
-          <ListItem
-            selected={path.includes(item.to)}
-            {...item}
-            dense
-            navigation />
-        </a>
-      </span>
-    </List>
-    <hr />
-  </NavigationDrawer>
-
   <slot />
 </main>
