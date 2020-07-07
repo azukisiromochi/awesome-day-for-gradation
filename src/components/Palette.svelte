@@ -1,14 +1,12 @@
 <script>
   export let hue;
-  const bgColorClass = 'is-hsl-' + hue;
+  const bgColorClass = hue ? 'is-hsl-' + hue : null;
 
   let open = false;
 </script>
 
-<div class="palette--container" class:open={open}>
-  <div
-    class="palette {bgColorClass}"
-    on:click={() => open = !open} />
+<div class="palette--container" class:open>
+  <div class="palette {bgColorClass}" on:click="{() => (open = !open)}"></div>
 </div>
 
 <style lang="scss">
@@ -27,20 +25,45 @@
     display: block;
     background: black;
     border-radius: 25%;
-    transition: all .3s ease-out;
     backface-visibility: hidden;
-    transform: scale(.5);
+    transform: scale(0.5);
+    transition: all 0.3s ease-out;
+    animation: reverse-z-index 0.3s both;
   }
   .open {
     .palette {
-      transform: scale(25);
-      transition: all .6s ease-out;
       border-radius: 50%;
+      transform: scale(25);
+      transition: all 0.6s ease-out;
+      animation: forward-z-index 0.6s both;
+    }
+  }
+
+  @keyframes forward-z-index {
+    0% {
+      z-index: 0;
+    }
+    1% {
+      z-index: 10;
+    }
+    100% {
+      z-index: 10;
+    }
+  }
+  @keyframes reverse-z-index {
+    0% {
+      z-index: 10;
+    }
+    99% {
+      z-index: 10;
+    }
+    100% {
+      z-index: 0;
     }
   }
 
   @function getHsl($hue) {
-     @return hsl($hue, 95%, 65%);
+    @return hsl($hue, 90%, 70%);
   }
   .is-hsl-000 {
     background-color: getHsl(0);

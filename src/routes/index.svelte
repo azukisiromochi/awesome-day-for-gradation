@@ -1,6 +1,6 @@
 <script>
-  import Palette from "../components/Palette.svelte";
-  import Image from "components/Image";
+  import Palette from '../components/Palette.svelte';
+  import Image from 'components/Image';
 </script>
 
 <div class="container h-full items-center flex flex-wrap">
