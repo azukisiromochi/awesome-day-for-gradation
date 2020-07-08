@@ -24,7 +24,6 @@
     height: $palette-size;
     display: block;
     background: black;
-    border-radius: 25%;
     backface-visibility: hidden;
     transform: scale(0.5);
     transition: all 0.3s ease-out;
@@ -32,7 +31,6 @@
   }
   .open {
     .palette {
-      border-radius: 50%;
       transform: scale(25);
       transition: all 0.6s ease-out;
       animation: forward-z-index 0.6s both;
@@ -42,23 +40,33 @@
   @keyframes forward-z-index {
     0% {
       z-index: 0;
+      border-radius: 25%;
     }
     1% {
       z-index: 10;
     }
+    50% {
+      border-radius: 50%;
+    }
     100% {
       z-index: 10;
+      border-radius: 50%;
     }
   }
   @keyframes reverse-z-index {
     0% {
       z-index: 10;
+      border-radius: 50%;
+    }
+    50% {
+      border-radius: 50%;
     }
     99% {
       z-index: 10;
     }
     100% {
       z-index: 0;
+      border-radius: 25%;
     }
   }
 
