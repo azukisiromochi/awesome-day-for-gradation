@@ -34,6 +34,7 @@
       transform: scale(25);
       transition: all 0.6s ease-out;
       animation: forward-z-index 0.6s both;
+      animation: full-view 0.1s 0.6s both;
     }
   }
 
@@ -67,6 +68,17 @@
     100% {
       z-index: 0;
       border-radius: 25%;
+    }
+  }
+  @keyframes full-view {
+    0% {
+      z-index: 10;
+      border-radius: 50%;
+    }
+    100% {
+      z-index: 10;
+      height: 100vh;
+      width: 100vw;
     }
   }
 
