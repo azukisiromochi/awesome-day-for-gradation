@@ -2,29 +2,20 @@
   import Utils from '../plugins/utils.js';
 
   export let hue;
-  const defaultColorClass = hue ? 'is-hsl-' + hue : '';
+  const paletteColorClass = hue ? 'is-hsl-' + hue : '';
 
   let open;
   let backgroundStyle;
-  let bgColorClass = defaultColorClass;
 
-  function openPalette() {
-    open = true;
-    bgColorClass = '';
+  function changeGradation() {
     backgroundStyle = Utils.makeGradation(hue);
-  }
-  function closePalette() {
-    open = false;
-    bgColorClass = defaultColorClass;
-
-    //TODO: Test 用にコメントアウト
-    // backgroundStyle = null;
   }
 </script>
 
 <div class="palette--container" class:open>
-  <button class="close" on:click="{closePalette}">╳</button>
-  <div class="palette {bgColorClass}" style="background: {backgroundStyle}" on:click="{openPalette}"></div>
+  <button class="close" on:click="{() => (open = false)}">╳</button>
+  <div class="palette {paletteColorClass}" on:click="{() => (open = true)}"></div>
+  <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
 </div>
 
 <style lang="scss">
@@ -32,8 +23,9 @@
 
   .palette--container {
     position: relative;
-    width: $palette-size * 1.5;
-    height: $palette-size;
+    width: $palette-size * 5 / 4;
+    height: $palette-size * 3 / 4;
+    margin-left: $palette-size * 1 / 4;
   }
 
   .palette {
@@ -41,8 +33,6 @@
     width: $palette-size;
     height: $palette-size;
     display: block;
-    background: black;
-    backface-visibility: hidden;
     transform: scale(0.5);
     transition: all 0.3s ease-out;
     animation: reverse-z-index 0.3s both;
@@ -51,9 +41,8 @@
   .open {
     .palette {
       transform: scale(25);
-      transition: all 0.6s ease-out;
-      animation: forward-z-index 0.6s both;
-      animation: full-view 0.1s 0.6s both;
+      transition: all 1s ease-out;
+      animation: forward-z-index 1s both;
     }
   }
 
@@ -78,7 +67,7 @@
       font-size: 2em;
       padding: 1em;
       cursor: pointer;
-      z-index: 15;
+      z-index: 20;
 
       transition-duration: 0.5s;
       transform: scale(1);
@@ -87,6 +76,23 @@
         outline: none;
         transform: scale(1.5);
       }
+    }
+  }
+
+  .gradation-maker {
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
+    z-index: 15;
+    cursor: pointer;
+  }
+  .open {
+    .gradation-maker {
+      transition-duration: 1s;
+      display: block;
     }
   }
 
@@ -120,17 +126,6 @@
     100% {
       z-index: 0;
       border-radius: 25%;
-    }
-  }
-  @keyframes full-view {
-    0% {
-      z-index: 10;
-      border-radius: 50%;
-    }
-    100% {
-      z-index: 10;
-      height: 100vh;
-      width: 100vw;
     }
   }
   @keyframes hide-close {
