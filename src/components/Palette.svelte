@@ -2,11 +2,16 @@
   export let hue;
   const bgColorClass = hue ? 'is-hsl-' + hue : null;
 
-  let open = false;
+  let open;
+
+  function openPalette() {
+    open = true;
+  }
 </script>
 
 <div class="palette--container" class:open>
-  <div class="palette {bgColorClass}" on:click="{() => (open = !open)}"></div>
+  <button class="close" on:click="{() => (open = false)}">╳</button>
+  <div class="palette {bgColorClass}" on:click="{openPalette}"></div>
 </div>
 
 <style lang="scss">
@@ -28,6 +33,7 @@
     transform: scale(0.5);
     transition: all 0.3s ease-out;
     animation: reverse-z-index 0.3s both;
+    cursor: pointer;
   }
   .open {
     .palette {
@@ -35,6 +41,39 @@
       transition: all 0.6s ease-out;
       animation: forward-z-index 0.6s both;
       animation: full-view 0.1s 0.6s both;
+    }
+  }
+
+  .close {
+    animation: hide-close 1s reverse both;
+    display: none;
+
+    &:focus {
+      outline: none;
+      transform: scale(1.1);
+    }
+  }
+  .open {
+    .close {
+      display: inline-block;
+
+      border: none;
+      background: none;
+      position: fixed;
+      top: 2em;
+      right: 1em;
+      font-size: 2em;
+      padding: 1em;
+      cursor: pointer;
+      z-index: 15;
+
+      transition-duration: 0.5s;
+      transform: scale(1);
+
+      &:hover {
+        outline: none;
+        transform: scale(1.5);
+      }
     }
   }
 
@@ -79,6 +118,16 @@
       z-index: 10;
       height: 100vh;
       width: 100vw;
+    }
+  }
+  @keyframes hide-close {
+    0% {
+      opacity: 1;
+      display: inline-block;
+    }
+    100% {
+      display: none;
+      opacity: 0;
     }
   }
 
