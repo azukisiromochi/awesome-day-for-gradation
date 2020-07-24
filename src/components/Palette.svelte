@@ -1,17 +1,30 @@
 <script>
+  import Utils from '../plugins/utils.js';
+
   export let hue;
-  const bgColorClass = hue ? 'is-hsl-' + hue : null;
+  const defaultColorClass = hue ? 'is-hsl-' + hue : '';
 
   let open;
+  let backgroundStyle;
+  let bgColorClass = defaultColorClass;
 
   function openPalette() {
     open = true;
+    bgColorClass = '';
+    backgroundStyle = Utils.makeGradation(hue);
+  }
+  function closePalette() {
+    open = false;
+    bgColorClass = defaultColorClass;
+
+    //TODO: Test 用にコメントアウト
+    // backgroundStyle = null;
   }
 </script>
 
 <div class="palette--container" class:open>
-  <button class="close" on:click="{() => (open = false)}">╳</button>
-  <div class="palette {bgColorClass}" on:click="{openPalette}"></div>
+  <button class="close" on:click="{closePalette}">╳</button>
+  <div class="palette {bgColorClass}" style="background: {backgroundStyle}" on:click="{openPalette}"></div>
 </div>
 
 <style lang="scss">
