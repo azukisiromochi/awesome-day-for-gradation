@@ -7,13 +7,17 @@
   let open;
   let backgroundStyle;
 
+  function closePalette() {
+    open = false;
+    backgroundStyle = null;
+  }
   function changeGradation() {
     backgroundStyle = Utils.makeGradation(hue);
   }
 </script>
 
 <div class="palette--container" class:open>
-  <button class="close" on:click="{() => (open = false)}">╳</button>
+  <button class="close" on:click="{closePalette}">╳</button>
   <div class="palette {paletteColorClass}" on:click="{() => (open = true)}"></div>
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
 </div>
@@ -91,7 +95,6 @@
   }
   .open {
     .gradation-maker {
-      transition-duration: 1s;
       display: block;
     }
   }
