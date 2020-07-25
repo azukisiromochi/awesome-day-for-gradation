@@ -9,8 +9,14 @@ export default {
     return 'hsl(' + this.randomHue(h) + ',' + this.randomSaturation() + '%,' + this.randomLightness() + '%)'
   },
   randomHue: function(h) {
-    if (h || h === 0) {
-      return this.random(h - 15, h + 15)
+    const hue = +h;
+    if (hue || hue === 0) {
+      const rand = this.random(0, 30)
+      if (hue == 0 && rand < 15) {
+        return (360 - 1) - rand
+      } else {
+        return hue + (rand - 15)
+      }
     }
     return this.random(0, 360)
   },
