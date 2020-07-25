@@ -1,4 +1,5 @@
 <script>
+  import Button from 'smelte/src/components/Button';
   import Utils from '../plugins/utils.js';
 
   export let hue;
@@ -6,13 +7,19 @@
 
   let open;
   let backgroundStyle;
+  let histories = [];
 
   function closePalette() {
     open = false;
     backgroundStyle = null;
   }
   function changeGradation() {
-    backgroundStyle = Utils.makeGradation(hue);
+    const gradation = Utils.makeGradation(hue);
+    backgroundStyle = gradation;
+    histories = [...histories, gradation];
+  }
+  function viewHistory(gradation) {
+    backgroundStyle = gradation;
   }
 </script>
 
@@ -20,6 +27,11 @@
   <button class="close" on:click="{closePalette}">╳</button>
   <div class="palette {paletteColorClass}" on:click="{() => (open = true)}"></div>
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
+  <div class="flex history--container">
+    {#each histories as history, i}
+      <Button style="margin: 5px; background: {history}" on:click="{() => viewHistory(history)}" />
+    {/each}
+  </div>
 </div>
 
 <style lang="scss">
@@ -95,6 +107,20 @@
   }
   .open {
     .gradation-maker {
+      display: block;
+    }
+  }
+
+  .history--container {
+    display: none;
+    z-index: 20;
+    position: fixed;
+    bottom: 5vh;
+    left: 20vw;
+    width: 60vw;
+  }
+  .open {
+    .history--container {
       display: block;
     }
   }
