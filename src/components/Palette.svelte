@@ -115,7 +115,7 @@
     display: none;
     z-index: 20;
     position: fixed;
-    bottom: 5vh;
+    bottom: 4em;
     left: 20vw;
     width: 60vw;
   }

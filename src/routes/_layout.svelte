@@ -10,6 +10,8 @@
   import ProgressLinear from 'smelte/src/components/ProgressLinear';
   import { writable } from 'svelte/store';
 
+  import AppFooter from '../components/AppFooter.svelte';
+
   const right = writable(false);
   const persistent = writable(true);
   const elevation = writable(false);
@@ -68,3 +70,5 @@
 <main class="container relative p-8 mx-auto h-screen" transition:fade="{{ duration: 300 }}">
   <slot />
 </main>
+
+<AppFooter />
