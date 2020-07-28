@@ -1,5 +1,8 @@
 <footer class="pa-2">
-  <span>Designed & Developed By <a target="_blank" rel="noopener" href="https://twitter.com/azukisiromochi">@azukisiromochi</a></span>
+  <span>
+    Designed & Developed By
+    <a target="_blank" rel="noopener" href="https://twitter.com/azukisiromochi">@azukisiromochi</a>
+  </span>
   <span>©azukisiromochi</span>
 </footer>
 
