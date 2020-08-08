@@ -1,6 +1,7 @@
 <script>
   import Button from 'smelte/src/components/Button';
   import Utils from '../plugins/utils.js';
+  import { gradation } from '../store/stores.js';
 
   export let hue;
   const paletteColorClass = hue ? 'is-hsl-' + hue : '';
@@ -12,14 +13,17 @@
   function closePalette() {
     open = false;
     backgroundStyle = null;
+    gradation.clear();
   }
   function changeGradation() {
-    const gradation = Utils.makeGradation(hue);
-    backgroundStyle = gradation;
-    histories = [...histories, gradation];
+    const _gradation = Utils.makeGradation(hue);
+    backgroundStyle = _gradation;
+    histories = [...histories, _gradation];
+    gradation.set(_gradation);
   }
-  function viewHistory(gradation) {
-    backgroundStyle = gradation;
+  function viewHistory(_gradation) {
+    backgroundStyle = _gradation;
+    gradation.set(_gradation);
   }
 </script>
 

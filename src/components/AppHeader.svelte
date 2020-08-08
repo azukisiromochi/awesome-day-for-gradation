@@ -3,12 +3,17 @@
   import Button from 'smelte/src/components/Button';
   import Snackbar from 'smelte/src/components/Snackbar';
   import { Spacer } from 'smelte/src/components/Util';
+  import { gradation } from '../store/stores.js';
 
   let showSnackbar = false;
+  let _gradation;
+  gradation.subscribe((value) => {
+    _gradation = value;
+  });
 
   function copyColor() {
-    if(navigator.clipboard){
-      navigator.clipboard.writeText('color');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(_gradation);
       showSnackbar = true;
     }
   }
