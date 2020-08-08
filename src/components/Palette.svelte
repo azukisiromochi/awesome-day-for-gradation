@@ -49,22 +49,19 @@
     width: $palette-size;
     height: $palette-size;
     display: block;
-    transform: scale(0.5);
-    transition: all 0.3s ease-out;
-    animation: reverse-z-index 0.3s both;
+    animation: close-palette 0.5s both;
     cursor: pointer;
   }
   .open {
     .palette {
-      transform: scale(25);
-      transition: all 1s ease-out;
-      animation: forward-z-index 1s both;
+      animation: open-palette 1s both;
     }
   }
 
   .close {
-    animation: hide-close 1s reverse both;
+    animation: hide-close-button 1s reverse both;
     display: none;
+    color: white;
 
     &:focus {
       outline: none;
@@ -125,10 +122,11 @@
     }
   }
 
-  @keyframes forward-z-index {
+  @keyframes open-palette {
     0% {
       z-index: 0;
       border-radius: 25%;
+      transform: scale(0.5);
     }
     1% {
       z-index: 10;
@@ -139,12 +137,14 @@
     100% {
       z-index: 10;
       border-radius: 50%;
+      transform: scale(25);
     }
   }
-  @keyframes reverse-z-index {
+  @keyframes close-palette {
     0% {
       z-index: 10;
       border-radius: 50%;
+      transform: scale(25);
     }
     50% {
       border-radius: 50%;
@@ -155,9 +155,10 @@
     100% {
       z-index: 0;
       border-radius: 25%;
+      transform: scale(0.5);
     }
   }
-  @keyframes hide-close {
+  @keyframes hide-close-button {
     0% {
       opacity: 1;
       display: inline-block;

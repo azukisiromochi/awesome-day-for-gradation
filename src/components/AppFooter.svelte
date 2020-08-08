@@ -1,4 +1,4 @@
-<footer class="pa-2">
+<footer class="pa-2 bg-dark-transDark">
   <span>
     Designed & Developed By
     <a target="_blank" rel="noopener" href="https://twitter.com/azukisiromochi">@azukisiromochi</a>
@@ -15,7 +15,7 @@
     bottom: 0;
     width: 100vw;
     padding: 0.5em;
-    background: rgba(64, 64, 64, 0.2);
+    padding-top: 1em;
     color: white;
   }
 </style>
