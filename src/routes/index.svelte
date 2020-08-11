@@ -2,7 +2,7 @@
   import Palette from '../components/Palette.svelte';
 </script>
 
-<div class="container h-full items-center flex flex-wrap">
+<div class="container h-full items-center flex flex-wrap justify-around">
   <Palette hue="000" />
   <Palette hue="030" />
   <Palette hue="060" />
