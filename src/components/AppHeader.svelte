@@ -3,20 +3,27 @@
   import Button from 'smelte/src/components/Button';
   import Snackbar from 'smelte/src/components/Snackbar';
   import { Spacer } from 'smelte/src/components/Util';
-  import { gradation } from '../store/stores.js';
+  import { hueStore, gradationStore } from '../store/stores.js';
   import Fa from 'svelte-fa';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
+  import Utils from '../plugins/utils.js';
 
   let showSnackbar = false;
-  let _gradation;
-  gradation.subscribe((value) => {
-    _gradation = value;
+  let hue;
+  let gradation;
+
+  hueStore.subscribe((value) => {
+    hue = value;
+  });
+  gradationStore.subscribe((value) => {
+    gradation = value;
   });
 
   function copyColor() {
-    if (_gradation && navigator.clipboard) {
-      navigator.clipboard.writeText(_gradation);
+    if (gradation && navigator.clipboard) {
+      navigator.clipboard.writeText(gradation);
       showSnackbar = true;
+      console.log('ShareUrl:', Utils.makeShareUrl(hue, gradation));
     }
   }
 </script>

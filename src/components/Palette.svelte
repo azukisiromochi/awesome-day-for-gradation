@@ -1,7 +1,7 @@
 <script>
   import Button from 'smelte/src/components/Button';
   import Utils from '../plugins/utils.js';
-  import { gradation } from '../store/stores.js';
+  import { hueStore, gradationStore } from '../store/stores.js';
 
   export let hue;
   const paletteColorClass = hue ? 'is-hsl-' + hue : '';
@@ -10,26 +10,31 @@
   let backgroundStyle;
   let histories = [];
 
-  function closePalette() {
+  export const openPalette = () => {
+    open = true;
+    hueStore.set(hue);
+  };
+  const closePalette = () => {
     open = false;
     backgroundStyle = null;
-    gradation.clear();
-  }
-  function changeGradation() {
-    const _gradation = Utils.makeGradation(hue);
-    backgroundStyle = _gradation;
-    histories = [...histories, _gradation];
-    gradation.set(_gradation);
-  }
-  function viewHistory(_gradation) {
-    backgroundStyle = _gradation;
-    gradation.set(_gradation);
-  }
+    hueStore.clear();
+    gradationStore.clear();
+  };
+  const changeGradation = () => {
+    const gradation = Utils.makeGradation(hue);
+    backgroundStyle = gradation;
+    histories = [...histories, gradation];
+    gradationStore.set(gradation);
+  };
+  export const viewHistory = (history) => {
+    backgroundStyle = history;
+    gradationStore.set(history);
+  };
 </script>
 
 <div class="palette--container" class:open>
   <button class="close" on:click="{closePalette}">╳</button>
-  <div class="palette {paletteColorClass}" on:click="{() => (open = true)}"></div>
+  <div class="palette {paletteColorClass}" on:click="{openPalette}"></div>
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
   <div class="flex history--container">
     {#each histories as history, i}
