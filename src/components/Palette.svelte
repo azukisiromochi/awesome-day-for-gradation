@@ -7,15 +7,18 @@
   const paletteColorClass = hue ? 'is-hsl-' + hue : '';
 
   let open;
+  let close;
   let backgroundStyle;
   let histories = [];
 
   export const openPalette = () => {
     open = true;
+    close = false;
     hueStore.set(hue);
   };
   const closePalette = () => {
     open = false;
+    close = true;
     backgroundStyle = null;
     hueStore.clear();
     gradationStore.clear();
@@ -32,8 +35,8 @@
   };
 </script>
 
-<div class="palette--container" class:open>
-  <button class="close" on:click="{closePalette}">╳</button>
+<div class="palette--container" class:open class:close>
+  <button class="close-button" on:click="{closePalette}">╳</button>
   <div class="palette {paletteColorClass}" on:click="{openPalette}"></div>
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
   <div class="flex history--container">
@@ -58,8 +61,13 @@
     width: $palette-size;
     height: $palette-size;
     display: block;
-    animation: close-palette 0.5s both;
+    animation: init-palette 0.5s both;
     cursor: pointer;
+  }
+  .close {
+    .palette {
+      animation: close-palette 0.5s both;
+    }
   }
   .open {
     .palette {
@@ -67,7 +75,7 @@
     }
   }
 
-  .close {
+  .close-button {
     animation: hide-close-button 1s reverse both;
     display: none;
     color: white;
@@ -78,7 +86,7 @@
     }
   }
   .open {
-    .close {
+    .close-button {
       display: inline-block;
 
       border: none;
@@ -131,6 +139,24 @@
     }
   }
 
+  @keyframes init-palette {
+    0% {
+      z-index: 10;
+      border-radius: 50%;
+      transform: scale(1);
+    }
+    50% {
+      border-radius: 50%;
+    }
+    99% {
+      z-index: 10;
+    }
+    100% {
+      z-index: 0;
+      border-radius: 25%;
+      transform: scale(0.5);
+    }
+  }
   @keyframes open-palette {
     0% {
       z-index: 0;

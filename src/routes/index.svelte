@@ -9,8 +9,8 @@
   let palette = {};
   onMount(() => {
     if (query.h && palette[query.h]) {
-      palette[query.h].openPalette();
-      palette[query.h].viewHistory(query.g);
+      setTimeout(()=> palette[query.h].openPalette(), 500);
+      setTimeout(()=> palette[query.h].viewHistory(query.g), 1500);
     }
   });
 </script>
