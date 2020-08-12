@@ -2,15 +2,15 @@
 const url = 'http://localhost:3000/';
 
 export default {
-  makeShareUrl: function(base, gradation) {
-    if (!base || !gradation) {
+  makeShareUrl: function(hue, gradation) {
+    if (!hue || !gradation) {
       return url;
     }
     const encode = encodeURI(gradation);
-    return url + '?h=' + base + '&g=' + encode;
+    return url + '?h=' + hue + '&g=' + encode;
   },
-  makeGradation: function(base) {
-    const primaryHsl = this.randomHsl(base)
+  makeGradation: function(hue) {
+    const primaryHsl = this.randomHsl(hue)
     const secondaryHsl = this.randomHsl();
     const deg = this.randomDegree();
     return 'linear-gradient(' + deg + 'deg,' + primaryHsl + ',' + secondaryHsl + ')';
@@ -18,14 +18,14 @@ export default {
   makeHsl: function(h, s, l) {
     return 'hsl(' + h + ',' + s + '%,' + l + '%)';
   },
-  randomHsl: function(base) {
-    const h = this.randomHue(base);
+  randomHsl: function(hue) {
+    const h = this.randomHue(hue);
     const s = this.randomSaturation();
     const l = this.randomLightness();
     return this.makeHsl(h, s, l);
   },
-  randomHue: function(h) {
-    const hue = +h;
+  randomHue: function(hue) {
+    hue = +hue;
     if (hue || hue === 0) {
       const rand = this.random(0, 30);
       if (hue == 0 && rand < 15) {
