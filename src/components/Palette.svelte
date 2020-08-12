@@ -44,7 +44,7 @@
   .palette--container {
     position: relative;
     width: $palette-size * 5 / 4;
-    height: $palette-size * 3 / 4;
+    height: $palette-size * 7 / 8;
     margin-left: $palette-size * 1 / 4;
   }
 

@@ -4,6 +4,8 @@
   import Snackbar from 'smelte/src/components/Snackbar';
   import { Spacer } from 'smelte/src/components/Util';
   import { gradation } from '../store/stores.js';
+  import Fa from 'svelte-fa';
+  import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
   let showSnackbar = false;
   let _gradation;
@@ -32,7 +34,18 @@
     icon="content_copy"
     text
     flat
-    on:click="{copyColor}" />
+    on:click="{copyColor}"
+  />
+  <Button
+    color="white"
+    remove="hover:bg-white rounded py-2 px-4"
+    add="hover:bg-white-trans rounded-full py-4 px-4"
+    href="https://github.com/azukisiromochi/awesome-day-for-gradation"
+    text
+    flat
+  >
+    <Fa icon="{faGithub}" style="height: 24px;" flip="vertical" />
+  </Button>
 </AppBar>
 
 <Snackbar top bind:value="{showSnackbar}">
