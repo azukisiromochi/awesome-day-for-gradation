@@ -36,7 +36,7 @@
 </AppBar>
 
 <Snackbar top bind:value="{showSnackbar}">
-  <div>Copied the gradation!</div>
+  <div>Copied the gradation 🎉</div>
   <div slot="action">
     <Button text on:click="{() => (showSnackbar = false)}">dummy</Button>
   </div>

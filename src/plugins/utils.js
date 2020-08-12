@@ -1,12 +1,18 @@
 export default {
-  makeGradation : function(h) {
-    const primaryHsl = this.randomHsl(h)
+  makeGradation : function(baseHue) {
+    const primaryHsl = this.randomHsl(baseHue)
     const secondaryHsl = this.randomHsl()
     const deg = this.randomDegree()
     return 'linear-gradient(' + deg + 'deg, ' + primaryHsl + ', ' + secondaryHsl + ')'
   },
-  randomHsl: function(h) {
-    return 'hsl(' + this.randomHue(h) + ',' + this.randomSaturation() + '%,' + this.randomLightness() + '%)'
+  makeHsl: function(h, s, l) {
+    return 'hsl(' + h + ',' + s + '%,' + l + '%)'
+  },
+  randomHsl: function(base) {
+    const h = this.randomHue(base)
+    const s = this.randomSaturation()
+    const l = this.randomLightness()
+    return this.makeHsl(h, s, l)
   },
   randomHue: function(h) {
     const hue = +h;
