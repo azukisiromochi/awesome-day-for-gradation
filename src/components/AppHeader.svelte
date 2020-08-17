@@ -30,7 +30,7 @@
 
 <AppBar class="{(i) => i.replace('primary-300', 'dark-transDark')}">
   <a href="." class="px-2 md:px-8 flex items-center">
-    <img src="/logo-192.png" alt="Smelte logo" width="44" />
+    <img src="/logo.png" alt="Smelte logo" width="44" />
     <h6 class="pl-3 text-white tracking-widest font-thin text-lg">グラデーション日和</h6>
   </a>
   <Spacer />
