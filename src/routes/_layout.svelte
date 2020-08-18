@@ -6,8 +6,15 @@
 
   import AppHeader from '../components/AppHeader.svelte';
   import AppFooter from '../components/AppFooter.svelte';
+  import { urlStore } from '../store/stores.js';
 
-  const { preloading } = stores();
+  const { preloading, page } = stores();
+
+  const host = $page.host;
+
+  if (!host.startsWith('localhost')) {
+    urlStore.set('https://' + host);
+  }
 </script>
 
 <svelte:head>

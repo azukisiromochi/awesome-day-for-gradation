@@ -1,5 +1,15 @@
 import { writable } from 'svelte/store';
 
+function createUrl() {
+  const { subscribe, set } = writable('http://localhost:3000/');
+
+  return {
+    subscribe,
+    set: (_url) => set(_url),
+    clear: () => set('http://localhost:3000/')
+  };
+}
+
 function createHue() {
   const { subscribe, set } = writable('');
 
@@ -20,5 +30,6 @@ function createGradation() {
   };
 }
 
+export const urlStore = createUrl();
 export const hueStore = createHue();
 export const gradationStore = createGradation();

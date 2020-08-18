@@ -6,13 +6,17 @@
   import TwitterShare from './TwitterShare.svelte';
   import Fa from 'svelte-fa';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
-  import { hueStore, gradationStore } from '../store/stores.js';
+  import { urlStore, hueStore, gradationStore } from '../store/stores.js';
   import Utils from '../plugins/utils.js';
 
   let showSnackbar = false;
+  let url;
   let hue;
   let gradation;
 
+  urlStore.subscribe((value) => {
+    url = value;
+  });
   hueStore.subscribe((value) => {
     hue = value;
   });
@@ -43,7 +47,7 @@
     flat
     on:click="{copyColor}"
   />
-  <TwitterShare text="わたしのお気に入りのグラデーションは……" url="{Utils.makeShareUrl(hue, gradation)}" />
+  <TwitterShare text="わたしのお気に入りのグラデーションは……" url="{Utils.makeShareUrl(url, hue, gradation)}" />
   <Button
     color="white"
     remove="hover:bg-white rounded py-2 px-4"

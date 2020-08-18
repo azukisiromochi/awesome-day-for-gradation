@@ -1,8 +1,5 @@
-// TODO:
-const url = 'http://localhost:3000/';
-
 export default {
-  makeShareUrl: function(hue, gradation) {
+  makeShareUrl: function(url, hue, gradation) {
     if (!hue || !gradation) {
       return url;
     }
