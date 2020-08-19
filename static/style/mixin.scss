@@ -1,0 +1,13 @@
+$mq-breakpoints: (
+  'xsmall': 320px,
+  'small' : 600px,
+  'medium': 768px,
+  'large' : 1024px,
+  'xlarge': 1280px,
+);
+
+@mixin mq($breakpoint: xlarge) {
+  @media screen and (min-width: #{map-get($mq-breakpoints, $breakpoint)}) {
+    @content;
+  }
+}

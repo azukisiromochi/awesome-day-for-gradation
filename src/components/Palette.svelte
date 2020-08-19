@@ -47,23 +47,80 @@
 </div>
 
 <style lang="scss">
-  $palette-size: 200px;
+  @import 'static/style/mixin.scss';
+
+  $palette-size: 75px;
 
   .palette--container {
-    position: relative;
     width: $palette-size * 5 / 4;
     height: $palette-size * 7 / 8;
     margin-left: $palette-size * 1 / 4;
   }
 
   .palette {
-    position: fixed;
     width: $palette-size;
     height: $palette-size;
-    display: block;
     animation: init-palette 0.5s both;
+  }
+
+  @include mq(small) {
+    $palette-size: 100px;
+
+    .palette--container {
+      width: $palette-size * 5 / 4;
+      height: $palette-size * 7 / 8;
+      margin-left: $palette-size * 1 / 4;
+    }
+
+    .palette {
+      width: $palette-size;
+      height: $palette-size;
+      animation: init-palette 0.5s both;
+    }
+  }
+
+  @include mq(large) {
+    $palette-size: 150px;
+
+    .palette--container {
+      width: $palette-size * 5 / 4;
+      height: $palette-size * 7 / 8;
+      margin-left: $palette-size * 1 / 4;
+    }
+
+    .palette {
+      width: $palette-size;
+      height: $palette-size;
+      animation: init-palette 0.5s both;
+    }
+  }
+
+  @include mq {
+    $palette-size: 200px;
+
+    .palette--container {
+      width: $palette-size * 5 / 4;
+      height: $palette-size * 7 / 8;
+      margin-left: $palette-size * 1 / 4;
+    }
+
+    .palette {
+      width: $palette-size;
+      height: $palette-size;
+      animation: init-palette 0.5s both;
+    }
+  }
+
+  .palette--container {
+    position: relative;
+  }
+
+  .palette {
+    position: fixed;
+    display: block;
     cursor: pointer;
   }
+
   .close {
     .palette {
       animation: close-palette 0.5s both;
