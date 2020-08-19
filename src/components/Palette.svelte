@@ -49,18 +49,22 @@
 <style lang="scss">
   @import 'static/style/mixin.scss';
 
-  $palette-size: 75px;
+  $palette-size: 100px;
 
   .palette--container {
-    width: $palette-size * 5 / 4;
-    height: $palette-size * 7 / 8;
-    margin-left: $palette-size * 1 / 4;
+    width: 95px;
+    height: $palette-size;
   }
 
   .palette {
     width: $palette-size;
     height: $palette-size;
     animation: init-palette 0.5s both;
+  }
+
+  .history--container {
+    left: 10vw;
+    width: 80vw;
   }
 
   @include mq(small) {
@@ -76,6 +80,11 @@
       width: $palette-size;
       height: $palette-size;
       animation: init-palette 0.5s both;
+    }
+
+    .history--container {
+      left: 20vw;
+      width: 60vw;
     }
   }
 
@@ -149,8 +158,8 @@
       border: none;
       background: none;
       position: fixed;
-      top: 2em;
-      right: 1em;
+      top: 1.5em;
+      right: 0;
       font-size: 2em;
       padding: 1em;
       cursor: pointer;
@@ -187,8 +196,6 @@
     z-index: 20;
     position: fixed;
     bottom: 4em;
-    left: 20vw;
-    width: 60vw;
   }
   .open {
     .history--container {

@@ -7,6 +7,8 @@
 </footer>
 
 <style lang="scss">
+  @import 'static/style/mixin.scss';
+
   footer {
     z-index: 30;
     display: flex;
@@ -17,5 +19,17 @@
     padding: 0.5em;
     padding-top: 1em;
     color: white;
+  }
+
+  @include mq(xsmall) {
+    footer {
+      font-size: x-small;
+    }
+  }
+
+  @include mq(small) {
+    footer {
+      font-size: medium;
+    }
   }
 </style>
