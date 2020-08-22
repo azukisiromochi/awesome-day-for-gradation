@@ -3,15 +3,29 @@
   import Button from 'smelte/src/components/Button';
   import Snackbar from 'smelte/src/components/Snackbar';
   import { Spacer } from 'smelte/src/components/Util';
-  import breakpoints from "smelte/src/breakpoints";
+  import breakpoints from 'smelte/src/breakpoints';
   import TwitterShare from './TwitterShare.svelte';
   import Fa from 'svelte-fa';
   import { faGithub } from '@fortawesome/free-brands-svg-icons';
   import { urlStore, hueStore, gradationStore } from '../store/stores.js';
   import Utils from '../plugins/utils.js';
 
-  const bp = breakpoints();
-  $: show = $bp !== 'sm';
+  const bp = breakpoints((width) => {
+    if (width > 1279) {
+      return 'xl';
+    }
+    if (width > 1023) {
+      return 'lg';
+    }
+    if (width > 767) {
+      return 'md';
+    }
+    if (width > 350) {
+      return 'sm';
+    }
+    return 'xs';
+  });
+  $: mobile = $bp === 'xs';
 
   let showSnackbar = false;
   let url;
@@ -38,9 +52,12 @@
 
 <AppBar class="{(i) => i.replace('primary-300', 'dark-transDark')}">
   <a href="." class="px-2 md:px-8 flex items-center">
-    <img src="/logo.png" alt="Smelte logo" width="44" />
-    {#if show}
-    <h6 class="pl-3 text-white tracking-widest font-thin text-lg">グラデーション日和</h6>
+    {#if !mobile}
+      <img src="/logo.png" alt="Smelte logo" width="44" class="mr-4" />
+      <img src="/title.png" alt="Smelte logo" width="200" />
+    {/if}
+    {#if mobile}
+      <img src="/title.png" alt="Smelte logo" width="150" />
     {/if}
   </a>
   <Spacer />
