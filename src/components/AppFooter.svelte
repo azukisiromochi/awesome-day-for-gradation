@@ -19,6 +19,7 @@
     padding: 0.5em;
     padding-top: 1em;
     color: white;
+    font-family: 'Pompiere', 'Roboto', sans-serif;
   }
 
   @include mq(xsmall) {
