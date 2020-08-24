@@ -24,7 +24,7 @@
     title: '今日の気分は何色？',
     description: 'CSS のグラデーションをクリックだけでかんたんに生成する Web サービスです。',
     site_name: 'グラデーション日和',
-    image: 'logo.png',
+    image: '/ogp.png',
   };
 </script>
 
