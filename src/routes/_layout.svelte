@@ -27,7 +27,7 @@
 
 <AppHeader />
 
-<main class="container relative p-8 mx-auto h-screen" transition:fade="{{ duration: 300 }}">
+<main class="container relative p-8 pt-16 pb-12 mx-auto h-screen" transition:fade="{{ duration: 300 }}">
   <slot />
 </main>
 

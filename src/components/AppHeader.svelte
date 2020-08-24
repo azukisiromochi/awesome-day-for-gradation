@@ -17,7 +17,7 @@
     if (width > 1023) {
       return 'lg';
     }
-    if (width > 767) {
+    if (width > 600) {
       return 'md';
     }
     if (width > 350) {
@@ -25,7 +25,8 @@
     }
     return 'xs';
   });
-  $: mobile = $bp === 'xs';
+  $: mobile = $bp === 'sm';
+  $: mobileXs = $bp === 'xs';
 
   let showSnackbar = false;
   let url;
@@ -52,12 +53,13 @@
 
 <AppBar class="{(i) => i.replace('primary-300', 'dark-transDark')}">
   <a href="." class="px-2 md:px-8 flex items-center">
-    {#if !mobile}
-      <img src="/logo.png" alt="Smelte logo" width="44" class="mr-4" />
-      <img src="/title.png" alt="Smelte logo" width="200" />
-    {/if}
     {#if mobile}
-      <img src="/title.png" alt="Smelte logo" width="150" />
+      <img src="/title.png" alt="Smelte logo" width="150" class="ml-4" />
+    {:else if mobileXs}
+      <img src="/title.png" alt="Smelte logo" width="120" class="ml-2" />
+    {:else}
+      <img src="/logo.png" alt="Smelte logo" width="44" />
+      <img src="/title.png" alt="Smelte logo" width="200" class="ml-4" />
     {/if}
   </a>
   <Spacer />
