@@ -10,21 +10,7 @@
   import { urlStore, hueStore, gradationStore } from '../store/stores.js';
   import Utils from '../plugins/utils.js';
 
-  const bp = breakpoints((width) => {
-    if (width > 1279) {
-      return 'xl';
-    }
-    if (width > 1023) {
-      return 'lg';
-    }
-    if (width > 600) {
-      return 'md';
-    }
-    if (width > 350) {
-      return 'sm';
-    }
-    return 'xs';
-  });
+  const bp = breakpoints(Utils.calcBreakpoint);
   $: mobile = $bp === 'sm';
   $: mobileXs = $bp === 'xs';
 
