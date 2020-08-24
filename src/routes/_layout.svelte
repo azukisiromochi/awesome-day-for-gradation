@@ -1,27 +1,4 @@
-<script context="module">
-  import { urlStore } from '../store/stores.js';
-  export function preload({ host }) {
-    let url = 'http://localhost:3000/';
-    if (!host.startsWith('localhost')) {
-      url = 'https://' + host;
-    }
-
-    urlStore.set(url);
-
-    const ogp = {
-      url,
-      type: 'website',
-      title: '今日の気分は何色？',
-      description: 'CSS のグラデーションをクリックだけでかんたんに生成する Web サービスです。',
-      site_name: 'グラデーション日和',
-      image: 'logo.png',
-    };
-    return { ogp };
-  }
-</script>
-
 <script>
-  export let ogp;
   import { stores } from '@sapper/app';
   import { fade } from 'svelte/transition';
 
@@ -29,8 +6,26 @@
 
   import AppHeader from '../components/AppHeader.svelte';
   import AppFooter from '../components/AppFooter.svelte';
+  import { urlStore } from '../store/stores.js';
 
-  const { preloading } = stores();
+  const { preloading, page } = stores();
+  const host = $page.host;
+
+  let url = 'http://localhost:3000/';
+  if (!host.startsWith('localhost')) {
+    url = 'https://' + host;
+  }
+
+  urlStore.set(url);
+
+  const ogp = {
+    url,
+    type: 'website',
+    title: '今日の気分は何色？',
+    description: 'CSS のグラデーションをクリックだけでかんたんに生成する Web サービスです。',
+    site_name: 'グラデーション日和',
+    image: 'logo.png',
+  };
 </script>
 
 <svelte:head>
