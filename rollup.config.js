@@ -9,7 +9,7 @@ import pkg from './package.json';
 
 // Using Smelte
 import includePaths from "rollup-plugin-includepaths";
-// const smelte = require("smelte/rollup-plugin-smelte");
+const smelte = require("smelte/rollup-plugin-smelte");
 
 // Using sass
 import sveltePreprocess from 'svelte-preprocess';
@@ -90,7 +90,7 @@ export default {
 				dev,
 				preprocess
 			}),
-			// smelte(),
+			smelte(),
 			resolve({
 				dedupe: ['svelte']
 			}),
