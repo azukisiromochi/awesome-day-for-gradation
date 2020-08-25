@@ -24,7 +24,7 @@
 
 <svelte:head>
   <title>グラデーション日和</title>
-  <meta name="description" content="{ogp.description}">
+  <meta name="description" content="{ogp.description}" />
   <meta property="og:url" content="{ogp.url}" />
   <meta property="og:type" content="{ogp.type}" />
   <meta property="og:title" content="{ogp.title}" />

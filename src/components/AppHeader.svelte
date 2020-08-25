@@ -59,7 +59,11 @@
     on:click="{copyColor}"
     aria-label="Copy"
   />
-  <TwitterShare text="わたしのお気に入りのグラデーションは……" url="{Utils.makeShareUrl(url, hue, gradation)}" />
+  <TwitterShare
+    text="わたしのお気に入りのグラデーションは……"
+    url="{Utils.makeShareUrl(url, hue, gradation)}"
+    hashtags="グラデーション日和"
+  />
   <Button
     color="white"
     remove="hover:bg-white rounded py-2 px-4"

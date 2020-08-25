@@ -45,7 +45,11 @@
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
   <div class="flex history--container">
     {#each histories as history, i}
-      <Button style="margin: 5px; background: {history}" on:click="{() => viewHistory(history)}" aria-label="gradation histories" />
+      <Button
+        style="margin: 5px; background: {history}"
+        on:click="{() => viewHistory(history)}"
+        aria-label="gradation histories"
+      />
     {/each}
   </div>
 </div>
@@ -63,7 +67,6 @@
   .palette {
     width: $palette-size;
     height: $palette-size;
-    animation: init-palette 0.5s both;
   }
 
   .history--container {
@@ -83,7 +86,6 @@
     .palette {
       width: $palette-size;
       height: $palette-size;
-      animation: init-palette 0.5s both;
     }
 
     .history--container {
@@ -104,7 +106,6 @@
     .palette {
       width: $palette-size;
       height: $palette-size;
-      animation: init-palette 0.5s both;
     }
   }
 
@@ -120,7 +121,6 @@
     .palette {
       width: $palette-size;
       height: $palette-size;
-      animation: init-palette 0.5s both;
     }
   }
 
@@ -132,6 +132,7 @@
     position: fixed;
     display: block;
     cursor: pointer;
+    animation: init-palette 0.5s both;
   }
 
   .close {
