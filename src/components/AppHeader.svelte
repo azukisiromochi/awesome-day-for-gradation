@@ -57,6 +57,7 @@
     text
     flat
     on:click="{copyColor}"
+    aria-label="Copy"
   />
   <TwitterShare text="わたしのお気に入りのグラデーションは……" url="{Utils.makeShareUrl(url, hue, gradation)}" />
   <Button
@@ -66,6 +67,7 @@
     href="https://github.com/azukisiromochi/awesome-day-for-gradation"
     text
     flat
+    aria-label="GitHub"
   >
     <Fa icon="{faGithub}" style="height: 24px;" flip="vertical" />
   </Button>

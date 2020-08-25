@@ -24,7 +24,7 @@
 
   @include mq(xsmall) {
     footer {
-      font-size: x-small;
+      font-size: small;
     }
   }
 

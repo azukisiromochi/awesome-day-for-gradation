@@ -41,7 +41,7 @@
   <div class="gradation-maker" style="background: {backgroundStyle}" on:click="{changeGradation}"></div>
   <div class="flex history--container">
     {#each histories as history, i}
-      <Button style="margin: 5px; background: {history}" on:click="{() => viewHistory(history)}" />
+      <Button style="margin: 5px; background: {history}" on:click="{() => viewHistory(history)}" aria-label="gradation histories" />
     {/each}
   </div>
 </div>

@@ -34,6 +34,7 @@
   text
   flat
   on:click="{open}"
+  aria-label="Tweet"
 >
   <Fa icon="{faTwitter}" style="height: 24px;" />
 </Button>
