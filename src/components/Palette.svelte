@@ -29,9 +29,13 @@
     histories = [...histories, gradation];
     gradationStore.set(gradation);
   };
-  export const viewHistory = (history) => {
+  const viewHistory = (history) => {
     backgroundStyle = history;
     gradationStore.set(history);
+  };
+  export const addAndViewHistory = (history) => {
+    histories = [...histories, history];
+    viewHistory(history);
   };
 </script>
 
